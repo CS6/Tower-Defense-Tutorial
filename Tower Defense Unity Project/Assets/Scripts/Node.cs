@@ -46,6 +46,9 @@ public class Node : MonoBehaviour {
 		if (!buildManager.CanBuild)
 			return;
 
+
+		// buildManager.turretList=buildManager.turretList+1;
+		// Debug.Log(buildManager.turretList);
 		BuildTurret(buildManager.GetTurretToBuild());
 	}
 
@@ -56,11 +59,14 @@ public class Node : MonoBehaviour {
 			Debug.Log("Not enough money to build that!");
 			return;
 		}
-
 		PlayerStats.Money -= blueprint.cost;
 
 		GameObject _turret = (GameObject)Instantiate(blueprint.prefab, GetBuildPosition(), Quaternion.identity);
 		turret = _turret;
+		Debug.Log(buildManager.CanBuild);
+		buildManager.turretList=buildManager.turretList+1;
+
+		Debug.Log("以建立"+buildManager.turretList+"座砲台");
 
 		turretBlueprint = blueprint;
 
@@ -121,6 +127,7 @@ public class Node : MonoBehaviour {
 		{
 			rend.material.color = notEnoughMoneyColor;
 		}
+
 
 	}
 

@@ -21,10 +21,10 @@ public class BuildManager : MonoBehaviour {
 	private Node selectedNode;
 
 	public NodeUI nodeUI;
+	public int turretList = 0;
 
-	public bool CanBuild { get { return turretToBuild != null; } }
+	public bool CanBuild { get { return turretToBuild != null && turretList<=9;} }
 	public bool HasMoney { get { return PlayerStats.Money >= turretToBuild.cost; } }
-
 	public void SelectNode (Node node)
 	{
 		if (selectedNode == node)
@@ -33,10 +33,8 @@ public class BuildManager : MonoBehaviour {
 			return;
 		}
 
-		selectedNode = node;
-		turretToBuild = null;
-
 		nodeUI.SetTarget(node);
+
 	}
 
 	public void DeselectNode()
